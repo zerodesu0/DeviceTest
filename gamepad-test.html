@@ -1,1 +1,894 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gamepad Test | DeviceTest</title><meta name="description" content="Connect a controller and inspect buttons and analog-stick values in real time."><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="tool.css"></head><body><header class="site-header"><a class="logo" href="index.html">Device<span>Test</span></a><nav><a href="mouse-test.html">Mouse</a><a href="keyboard-test.html">Keyboard</a><a href="mic-test.html">Microphone</a><a href="webcam-test.html">Webcam</a><a href="gamepad-test.html">Gamepad</a></nav></header><main class="tool-page"><p class="eyebrow">DEVICE TEST</p><h1>Gamepad Test</h1><p class="subtitle">Connect a controller and inspect buttons and analog-stick values in real time.</p><div class="ad-slot">ADVERTISEMENT</div><section class="tester"><div class="toolbar"><span class="pill" id="gpStatus">Connect a controller and press a button</span></div><div class="test-area"><div><div class="pad" id="gpInfo">No gamepad detected</div><p class="hint">Most modern browsers expose controllers through the Gamepad API.</p></div></div><div class="stats"><div class="stat"><small>Buttons pressed</small><b id="buttons">0</b></div><div class="stat"><small>Left stick X</small><b id="lx">0.00</b></div><div class="stat"><small>Left stick Y</small><b id="ly">0.00</b></div><div class="stat"><small>Right stick X</small><b id="rx">0.00</b></div></div></section><p class="copy">This browser test is a quick diagnostic aid, not a complete hardware diagnostic. Results depend on your browser, operating system and device permissions. DeviceTest does not need to upload your device data to perform these basic checks.</p></main><footer><div class="footer-inner"><a class="logo" href="index.html">Device<span>Test</span></a><div><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></div></div><p>© 2026 DeviceTest.</p></footer><script>let gp;window.addEventListener("gamepadconnected",e=>{gp=e.gamepad;document.getElementById("gpStatus").textContent="Connected: "+gp.id});function poll(){const g=navigator.getGamepads()[0]||gp;if(g){document.getElementById("gpInfo").textContent=g.id;document.getElementById("buttons").textContent=g.buttons.filter(b=>b.pressed).length;document.getElementById("lx").textContent=(g.axes[0]||0).toFixed(2);document.getElementById("ly").textContent=(g.axes[1]||0).toFixed(2);document.getElementById("rx").textContent=(g.axes[2]||0).toFixed(2)}requestAnimationFrame(poll)}poll();</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Gamepad Test — Online Controller Tester | DeviceTest</title>
+
+<meta name="description" content="Free online gamepad and controller tester. Test buttons, D-pad, analog sticks and triggers directly in your browser.">
+
+<link rel="canonical" href="https://devicetest.lat/gamepad-test.html">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tool.css">
+
+<style>
+
+.controller-wrap{
+  margin-top:25px;
+  padding:30px 15px;
+  background:#0b0e14;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.controller{
+  max-width:850px;
+  margin:auto;
+  position:relative;
+  min-height:430px;
+}
+
+.controller-body{
+  position:absolute;
+  left:50%;
+  top:80px;
+  transform:translateX(-50%);
+  width:min(700px,95%);
+  height:300px;
+  background:#171c25;
+  border:1px solid #303846;
+  border-radius:35px 35px 70px 70px;
+  box-shadow:0 20px 50px #0008;
+}
+
+.controller-button{
+  position:absolute;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#252c38;
+  border:2px solid #3b4555;
+  color:#cbd2dd;
+  font-weight:bold;
+  font-size:14px;
+  transition:.12s;
+  user-select:none;
+}
+
+.controller-button.holding{
+  background:#6d55d9;
+  border-color:#9b89ff;
+  color:white;
+  box-shadow:0 0 20px #7058e877;
+}
+
+.controller-button.tested{
+  border-color:#36c99a;
+  color:#5ee0b4;
+}
+
+.controller-button.holding::after{
+  content:"HOLD";
+  position:absolute;
+  top:54px;
+  font-size:9px;
+  color:#a89cff;
+  font-weight:normal;
+}
+
+.controller-button.tested:not(.holding)::after{
+  content:"✓";
+  position:absolute;
+  top:52px;
+  color:#42d8a4;
+  font-size:13px;
+}
+
+.ab-y{
+  top:35px;
+  right:85px;
+}
+
+.ab-b{
+  top:82px;
+  right:38px;
+}
+
+.ab-a{
+  top:129px;
+  right:85px;
+}
+
+.ab-x{
+  top:82px;
+  right:132px;
+}
+
+.dpad{
+  position:absolute;
+  left:85px;
+  top:85px;
+  width:135px;
+  height:135px;
+}
+
+.dpad .controller-button{
+  width:42px;
+  height:42px;
+}
+
+.d-up{
+  left:46px;
+  top:0;
+}
+
+.d-left{
+  left:0;
+  top:46px;
+}
+
+.d-right{
+  right:0;
+  top:46px;
+}
+
+.d-down{
+  left:46px;
+  bottom:0;
+}
+
+.shoulder{
+  top:-45px;
+  width:100px;
+  height:35px;
+  border-radius:12px;
+}
+
+.l1{
+  left:55px;
+}
+
+.r1{
+  right:55px;
+}
+
+.l2{
+  left:180px;
+}
+
+.r2{
+  right:180px;
+}
+
+.center-button{
+  width:58px;
+  height:30px;
+  border-radius:15px;
+  font-size:11px;
+}
+
+.start{
+  left:50%;
+  top:75px;
+  transform:translateX(15px);
+}
+
+.select{
+  left:50%;
+  top:75px;
+  transform:translateX(-73px);
+}
+
+.stick{
+  position:absolute;
+  width:82px;
+  height:82px;
+  border-radius:50%;
+  background:#0e1219;
+  border:2px solid #303947;
+}
+
+.stick-left{
+  left:245px;
+  top:170px;
+}
+
+.stick-right{
+  right:245px;
+  top:170px;
+}
+
+.stick-knob{
+  position:absolute;
+  width:36px;
+  height:36px;
+  left:21px;
+  top:21px;
+  border-radius:50%;
+  background:#252c38;
+  border:2px solid #465161;
+  transition:.05s;
+}
+
+.stick.active .stick-knob{
+  background:#6d55d9;
+  border-color:#a092ff;
+}
+
+.stick-label{
+  position:absolute;
+  top:88px;
+  width:100%;
+  text-align:center;
+  color:#778293;
+  font-size:10px;
+}
+
+.controller-info{
+  margin-top:20px;
+  text-align:center;
+  color:#8b95a5;
+  font-size:13px;
+}
+
+@media(max-width:700px){
+
+.controller{
+  transform:scale(.78);
+  transform-origin:top center;
+  height:350px;
+}
+
+.controller-wrap{
+  height:430px;
+}
+
+.controller-body{
+  width:700px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<a class="logo" href="index.html">
+Device<span>Test</span>
+</a>
+
+<nav>
+<a href="mouse-test.html">Mouse</a>
+<a href="keyboard-test.html">Keyboard</a>
+<a href="mic-test.html">Microphone</a>
+<a href="webcam-test.html">Webcam</a>
+<a href="gamepad-test.html">Gamepad</a>
+</nav>
+
+</header>
+
+
+<main class="tool-page">
+
+<p class="eyebrow">FREE ONLINE TOOL</p>
+
+<h1>Gamepad Test</h1>
+
+<p class="subtitle">
+Test your controller buttons, D-pad, analog sticks and triggers
+directly in your browser.
+</p>
+
+<div class="ad-slot">ADVERTISEMENT</div>
+
+
+<section class="tester">
+
+<div class="toolbar">
+
+<span class="pill" id="gpStatus">
+Connect a controller and press a button
+</span>
+
+<button
+class="button secondary"
+id="resetButton"
+type="button">
+Reset
+</button>
+
+</div>
+
+
+<div class="controller-wrap">
+
+<div class="controller">
+
+<div class="controller-body">
+
+<!-- D-PAD -->
+
+<div class="dpad">
+
+<div class="controller-button d-up" data-button="12">↑</div>
+
+<div class="controller-button d-left" data-button="14">←</div>
+
+<div class="controller-button d-right" data-button="15">→</div>
+
+<div class="controller-button d-down" data-button="13">↓</div>
+
+</div>
+
+
+<!-- ABXY -->
+
+<div class="controller-button ab-y" data-button="3">Y</div>
+
+<div class="controller-button ab-b" data-button="1">B</div>
+
+<div class="controller-button ab-a" data-button="0">A</div>
+
+<div class="controller-button ab-x" data-button="2">X</div>
+
+
+<!-- SHOULDERS -->
+
+<div class="controller-button shoulder l1" data-button="4">
+L1
+</div>
+
+<div class="controller-button shoulder r1" data-button="5">
+R1
+</div>
+
+<div class="controller-button shoulder l2" data-button="6">
+L2
+</div>
+
+<div class="controller-button shoulder r2" data-button="7">
+R2
+</div>
+
+
+<!-- CENTER -->
+
+<div class="controller-button center-button select" data-button="8">
+SELECT
+</div>
+
+<div class="controller-button center-button start" data-button="9">
+START
+</div>
+
+
+<!-- STICKS -->
+
+<div class="stick stick-left" id="leftStick">
+
+<div class="stick-knob"></div>
+
+<div class="stick-label">
+LEFT STICK
+</div>
+
+</div>
+
+
+<div class="stick stick-right" id="rightStick">
+
+<div class="stick-knob"></div>
+
+<div class="stick-label">
+RIGHT STICK
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="controller-info" id="gpInfo">
+No controller detected
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<small>Buttons tested</small>
+<b id="testedCount">0</b>
+</div>
+
+<div class="stat">
+<small>Buttons held</small>
+<b id="heldCount">0</b>
+</div>
+
+<div class="stat">
+<small>Left stick</small>
+<b id="leftValue">0.00 / 0.00</b>
+</div>
+
+<div class="stat">
+<small>Right stick</small>
+<b id="rightValue">0.00 / 0.00</b>
+</div>
+
+</div>
+
+
+<p class="hint" id="gpHint">
+Connect a controller and press any button.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>How to test your controller</h2>
+
+<p>
+Connect your controller through USB or Bluetooth and press each button.
+A button will show <strong>HOLD</strong> while you are holding it and
+will remain marked with a green check when the test detects that it works.
+</p>
+
+
+<h2>Test your controller D-pad</h2>
+
+<p>
+Press ↑, ↓, ← and → on your controller. Each direction is tested
+individually, making it easy to find a D-pad direction that isn't
+registering correctly.
+</p>
+
+
+<h2>Test analog sticks</h2>
+
+<p>
+Move both analog sticks around their full range. The virtual sticks
+move with your controller and the live X/Y values show the position
+reported by your browser.
+</p>
+
+
+<h2>Test controller triggers</h2>
+
+<p>
+Press the L2 and R2 triggers. Compatible controllers report their
+pressure as an analog value, allowing you to check whether the trigger
+responds across its range.
+</p>
+
+
+<h2>Why isn't my controller detected?</h2>
+
+<p>
+Reconnect the controller and press a button after connecting it.
+For Bluetooth controllers, make sure the controller is paired correctly.
+You can also try another USB port or browser if the controller isn't
+detected.
+</p>
+
+</section>
+
+
+<p class="copy">
+This gamepad tester uses the browser Gamepad API. DeviceTest does not
+need to upload your controller input. Results depend on your browser,
+operating system and controller.
+</p>
+
+</main>
+
+
+<footer>
+
+<div class="footer-inner">
+
+<a class="logo" href="index.html">
+Device<span>Test</span>
+</a>
+
+<div>
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy</a>
+<a href="contact.html">Contact</a>
+</div>
+
+</div>
+
+<p>© 2026 DeviceTest.</p>
+
+</footer>
+
+
+<script>
+
+let gamepad = null;
+
+const tested = new Set();
+
+const status =
+document.getElementById("gpStatus");
+
+const info =
+document.getElementById("gpInfo");
+
+const hint =
+document.getElementById("gpHint");
+
+const testedCount =
+document.getElementById("testedCount");
+
+const heldCount =
+document.getElementById("heldCount");
+
+const leftValue =
+document.getElementById("leftValue");
+
+const rightValue =
+document.getElementById("rightValue");
+
+const leftStick =
+document.getElementById("leftStick");
+
+const rightStick =
+document.getElementById("rightStick");
+
+
+/*
+Gamepad connected
+*/
+
+window.addEventListener(
+"gamepadconnected",
+function(e){
+
+gamepad = e.gamepad;
+
+status.textContent =
+"Connected ✓";
+
+info.textContent =
+gamepad.id;
+
+hint.textContent =
+"Controller connected. Test every button.";
+
+}
+);
+
+
+/*
+Gamepad disconnected
+*/
+
+window.addEventListener(
+"gamepaddisconnected",
+function(e){
+
+if(
+gamepad &&
+e.gamepad.index === gamepad.index
+){
+
+gamepad = null;
+
+status.textContent =
+"Disconnected";
+
+info.textContent =
+"No controller detected";
+
+hint.textContent =
+"Connect a controller and press a button.";
+
+}
+
+}
+);
+
+
+/*
+Find gamepad
+*/
+
+function getGamepad(){
+
+const pads =
+navigator.getGamepads
+? navigator.getGamepads()
+: [];
+
+if(gamepad){
+
+const current =
+pads[gamepad.index];
+
+if(current){
+
+return current;
+
+}
+
+}
+
+
+for(const pad of pads){
+
+if(pad){
+
+gamepad = pad;
+
+status.textContent =
+"Connected ✓";
+
+info.textContent =
+pad.id;
+
+return pad;
+
+}
+
+}
+
+
+return null;
+
+}
+
+
+/*
+Update buttons
+*/
+
+function updateButtons(g){
+
+let held = 0;
+
+
+document
+.querySelectorAll("[data-button]")
+.forEach(element => {
+
+const index =
+Number(element.dataset.button);
+
+const button =
+g.buttons[index];
+
+
+if(!button){
+
+return;
+
+}
+
+
+if(button.pressed){
+
+held++;
+
+element.classList.add("holding");
+
+tested.add(index);
+
+}
+else{
+
+element.classList.remove("holding");
+
+}
+
+
+if(tested.has(index)){
+
+element.classList.add("tested");
+
+}
+
+});
+
+
+testedCount.textContent =
+tested.size;
+
+heldCount.textContent =
+held;
+
+}
+
+
+/*
+Update sticks
+*/
+
+function updateStick(
+stick,
+x,
+y
+){
+
+const knob =
+stick.querySelector(
+".stick-knob"
+);
+
+
+const max =
+21;
+
+
+const px =
+Math.max(
+-minMax(x) * max,
+-max
+);
+
+const py =
+Math.max(
+-minMax(y) * max,
+-max
+);
+
+
+knob.style.transform =
+"translate(" +
+px +
+"px," +
+py +
+"px)";
+
+
+if(
+Math.abs(x) > .08 ||
+Math.abs(y) > .08
+){
+
+stick.classList.add(
+"active"
+);
+
+}
+else{
+
+stick.classList.remove(
+"active"
+);
+
+}
+
+}
+
+
+function minMax(value){
+
+return Math.max(
+-1,
+Math.min(1,value)
+);
+
+}
+
+
+/*
+Main polling loop
+*/
+
+function poll(){
+
+const g =
+getGamepad();
+
+
+if(g){
+
+updateButtons(g);
+
+
+const x1 =
+g.axes[0] || 0;
+
+const y1 =
+g.axes[1] || 0;
+
+const x2 =
+g.axes[2] || 0;
+
+const y2 =
+g.axes[3] || 0;
+
+
+leftValue.textContent =
+x1.toFixed(2) +
+" / " +
+y1.toFixed(2);
+
+
+rightValue.textContent =
+x2.toFixed(2) +
+" / " +
+y2.toFixed(2);
+
+
+updateStick(
+leftStick,
+x1,
+y1
+);
+
+
+updateStick(
+rightStick,
+x2,
+y2
+);
+
+}
+
+
+requestAnimationFrame(
+poll
+);
+
+}
+
+
+poll();
+
+
+/*
+Reset tested buttons
+*/
+
+document
+.getElementById("resetButton")
+.addEventListener(
+"click",
+function(){
+
+tested.clear();
+
+
+document
+.querySelectorAll("[data-button]")
+.forEach(element => {
+
+element.classList.remove(
+"tested"
+);
+
+});
+
+
+testedCount.textContent =
+"0";
+
+
+hint.textContent =
+"Test reset. Press your controller buttons.";
+
+}
+);
+
+</script>
+
+</body>
+</html>
