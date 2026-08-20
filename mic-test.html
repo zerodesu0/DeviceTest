@@ -1,1 +1,555 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Microphone Test | DeviceTest</title><meta name="description" content="Check microphone access and monitor live input level without uploading your recording."><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="tool.css"></head><body><header class="site-header"><a class="logo" href="index.html">Device<span>Test</span></a><nav><a href="mouse-test.html">Mouse</a><a href="keyboard-test.html">Keyboard</a><a href="mic-test.html">Microphone</a><a href="webcam-test.html">Webcam</a><a href="gamepad-test.html">Gamepad</a></nav></header><main class="tool-page"><p class="eyebrow">DEVICE TEST</p><h1>Microphone Test</h1><p class="subtitle">Check microphone access and monitor live input level without uploading your recording.</p><div class="ad-slot">ADVERTISEMENT</div><section class="tester"><div class="toolbar"><button class="button primary" id="startMic">Allow microphone</button><span class="pill" id="micStatus">Not connected</span></div><div class="test-area"><div style="width:100%"><div class="level"><i id="level"></i></div><p class="hint">Speak, clap or make a sound. The meter shows the detected input level.</p></div></div></section><p class="copy">This browser test is a quick diagnostic aid, not a complete hardware diagnostic. Results depend on your browser, operating system and device permissions. DeviceTest does not need to upload your device data to perform these basic checks.</p></main><footer><div class="footer-inner"><a class="logo" href="index.html">Device<span>Test</span></a><div><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></div></div><p>© 2026 DeviceTest.</p></footer><script>let ctx,analyser,stream;document.getElementById("startMic").onclick=async()=>{try{stream=await navigator.mediaDevices.getUserMedia({audio:true});ctx=new AudioContext();const src=ctx.createMediaStreamSource(stream);analyser=ctx.createAnalyser();analyser.fftSize=256;src.connect(analyser);document.getElementById("micStatus").textContent="Microphone connected ✓";const data=new Uint8Array(analyser.frequencyBinCount);function loop(){analyser.getByteTimeDomainData(data);let sum=0;for(const x of data){let v=(x-128)/128;sum+=v*v}document.getElementById("level").style.width=Math.min(100,Math.sqrt(sum/data.length)*180)+"%";requestAnimationFrame(loop)}loop()}catch(e){document.getElementById("micStatus").textContent="Permission denied or unavailable"}};</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Microphone Test — Online Mic Tester | DeviceTest</title>
+
+<meta name="description" content="Free online microphone test. Check microphone access, input level, volume and audio activity directly in your browser. No recording is uploaded.">
+
+<link rel="canonical" href="https://devicetest.lat/mic-test.html">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+<a class="logo" href="index.html">
+Device<span>Test</span>
+</a>
+
+<nav>
+<a href="mouse-test.html">Mouse</a>
+<a href="keyboard-test.html">Keyboard</a>
+<a href="mic-test.html">Microphone</a>
+<a href="webcam-test.html">Webcam</a>
+<a href="gamepad-test.html">Gamepad</a>
+</nav>
+
+</header>
+
+
+<main class="tool-page">
+
+<p class="eyebrow">FREE ONLINE TOOL</p>
+
+<h1>Microphone Test</h1>
+
+<p class="subtitle">
+Test your microphone online and check whether your browser can detect your audio input.
+See your live microphone level without uploading your audio.
+</p>
+
+<div class="ad-slot">ADVERTISEMENT</div>
+
+
+<section class="tester">
+
+<div class="toolbar">
+
+<button class="button primary" id="startMic">
+Allow microphone
+</button>
+
+<button class="button secondary" id="stopMic" disabled>
+Stop
+</button>
+
+<span class="pill" id="micStatus">
+Not connected
+</span>
+
+</div>
+
+
+<div class="test-area">
+
+<div style="width:100%">
+
+<div class="level">
+
+<i id="level"></i>
+
+</div>
+
+<p class="hint" id="levelText">
+Waiting for microphone…
+</p>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<small>Input level</small>
+
+<b id="levelValue">
+0%
+</b>
+
+</div>
+
+
+<div class="stat">
+
+<small>Peak level</small>
+
+<b id="peakValue">
+0%
+</b>
+
+</div>
+
+
+<div class="stat">
+
+<small>Audio activity</small>
+
+<b id="activity">
+Silent
+</b>
+
+</div>
+
+
+<div class="stat">
+
+<small>Status</small>
+
+<b id="statusText">
+Waiting
+</b>
+
+</div>
+
+</div>
+
+
+<p class="hint">
+Speak, clap or make a sound near your microphone.
+The meter should move when audio is detected.
+</p>
+
+
+</section>
+
+
+<section class="section">
+
+<h2>How to test your microphone</h2>
+
+<p>
+Click <strong>Allow microphone</strong> and give your browser permission
+to access your microphone. Then speak or make a sound. The live meter
+shows the microphone's detected input level.
+</p>
+
+
+<h2>How do I know if my microphone is working?</h2>
+
+<p>
+If the input level increases when you speak, your browser is receiving
+audio from the selected microphone. If the meter stays at zero, check
+your microphone connection, operating-system input settings and browser
+permissions.
+</p>
+
+
+<h2>Why does the microphone need permission?</h2>
+
+<p>
+Web browsers protect microphone access for privacy and security.
+A website cannot normally access your microphone without asking you
+for permission first.
+</p>
+
+
+<h2>Is my microphone recording uploaded?</h2>
+
+<p>
+No. DeviceTest analyzes the microphone signal locally in your browser.
+This test does not send your microphone audio to a DeviceTest server.
+</p>
+
+</section>
+
+
+<p class="copy">
+This online microphone test is a browser-based diagnostic tool. It does
+not save or upload your microphone recording. Results can vary depending
+on your browser, operating system, microphone and device permissions.
+</p>
+
+</main>
+
+
+<footer>
+
+<div class="footer-inner">
+
+<a class="logo" href="index.html">
+Device<span>Test</span>
+</a>
+
+<div>
+
+<a href="about.html">About</a>
+
+<a href="privacy.html">Privacy</a>
+
+<a href="contact.html">Contact</a>
+
+</div>
+
+</div>
+
+<p>© 2026 DeviceTest.</p>
+
+</footer>
+
+
+<script>
+
+let audioContext = null;
+
+let analyser = null;
+
+let microphoneStream = null;
+
+let animationFrame = null;
+
+
+const startButton =
+document.getElementById("startMic");
+
+const stopButton =
+document.getElementById("stopMic");
+
+const status =
+document.getElementById("micStatus");
+
+const statusText =
+document.getElementById("statusText");
+
+const level =
+document.getElementById("level");
+
+const levelValue =
+document.getElementById("levelValue");
+
+const peakValue =
+document.getElementById("peakValue");
+
+const activity =
+document.getElementById("activity");
+
+const levelText =
+document.getElementById("levelText");
+
+
+let peak = 0;
+
+
+/*
+Start microphone
+*/
+
+startButton.addEventListener("click", async function(){
+
+try{
+
+if(!navigator.mediaDevices ||
+   !navigator.mediaDevices.getUserMedia){
+
+status.textContent =
+"Microphone API unavailable";
+
+statusText.textContent =
+"Unsupported";
+
+return;
+
+}
+
+
+microphoneStream =
+await navigator.mediaDevices.getUserMedia({
+audio:true
+});
+
+
+audioContext =
+new (window.AudioContext ||
+window.webkitAudioContext)();
+
+
+const source =
+audioContext.createMediaStreamSource(
+microphoneStream
+);
+
+
+analyser =
+audioContext.createAnalyser();
+
+
+analyser.fftSize = 1024;
+
+analyser.smoothingTimeConstant = 0.75;
+
+
+source.connect(analyser);
+
+
+status.textContent =
+"Microphone connected ✓";
+
+statusText.textContent =
+"Connected";
+
+
+startButton.disabled = true;
+
+stopButton.disabled = false;
+
+
+levelText.textContent =
+"Microphone is active. Make a sound to test it.";
+
+
+const data =
+new Uint8Array(
+analyser.fftSize
+);
+
+
+function updateMeter(){
+
+if(!analyser){
+
+return;
+
+}
+
+
+analyser.getByteTimeDomainData(data);
+
+
+let sum = 0;
+
+
+for(let i = 0; i < data.length; i++){
+
+const value =
+(data[i] - 128) / 128;
+
+sum += value * value;
+
+}
+
+
+const rms =
+Math.sqrt(sum / data.length);
+
+
+let percent =
+Math.min(100, rms * 300);
+
+
+percent =
+Math.round(percent);
+
+
+if(percent > peak){
+
+peak = percent;
+
+}
+
+
+level.style.width =
+percent + "%";
+
+
+levelValue.textContent =
+percent + "%";
+
+
+peakValue.textContent =
+peak + "%";
+
+
+if(percent < 3){
+
+activity.textContent =
+"Silent";
+
+}
+
+else if(percent < 15){
+
+activity.textContent =
+"Low";
+
+}
+
+else if(percent < 45){
+
+activity.textContent =
+"Normal";
+
+}
+
+else{
+
+activity.textContent =
+"Loud";
+
+}
+
+
+animationFrame =
+requestAnimationFrame(updateMeter);
+
+}
+
+
+updateMeter();
+
+
+}
+
+catch(error){
+
+console.error(error);
+
+
+status.textContent =
+"Permission denied or unavailable";
+
+statusText.textContent =
+"Unavailable";
+
+
+levelText.textContent =
+"Microphone access was not granted. Check your browser permissions.";
+
+
+startButton.disabled = false;
+
+stopButton.disabled = true;
+
+}
+
+});
+
+
+/*
+Stop microphone
+*/
+
+stopButton.addEventListener("click", function(){
+
+stopMicrophone();
+
+});
+
+
+function stopMicrophone(){
+
+if(animationFrame){
+
+cancelAnimationFrame(
+animationFrame
+);
+
+animationFrame = null;
+
+}
+
+
+if(microphoneStream){
+
+microphoneStream
+.getTracks()
+.forEach(track => track.stop());
+
+microphoneStream = null;
+
+}
+
+
+if(audioContext){
+
+audioContext.close();
+
+audioContext = null;
+
+}
+
+
+analyser = null;
+
+
+level.style.width =
+"0%";
+
+
+levelValue.textContent =
+"0%";
+
+
+peak = 0;
+
+
+peakValue.textContent =
+"0%";
+
+
+activity.textContent =
+"Silent";
+
+
+status.textContent =
+"Not connected";
+
+
+statusText.textContent =
+"Stopped";
+
+
+levelText.textContent =
+"Microphone test stopped.";
+
+
+startButton.disabled = false;
+
+stopButton.disabled = true;
+
+}
+
+
+window.addEventListener("beforeunload", function(){
+
+if(microphoneStream){
+
+microphoneStream
+.getTracks()
+.forEach(track => track.stop());
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
