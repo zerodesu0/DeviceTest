@@ -1,2 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://example.com/</loc></url><url><loc>https://example.com/mouse-test.html</loc></url><url><loc>https://example.com/keyboard-test.html</loc></url><url><loc>https://example.com/mic-test.html</loc></url><url><loc>https://example.com/webcam-test.html</loc></url><url><loc>https://example.com/gamepad-test.html</loc></url><url><loc>https://example.com/about.html</loc></url><url><loc>https://example.com/privacy.html</loc></url><url><loc>https://example.com/contact.html</loc></url></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://devicetest.lat/</loc>
+  </url>
+
+  <url>
+    <loc>https://devicetest.lat/mouse-test.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devicetest.lat/keyboard-test.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devicetest.lat/gamepad-test.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devicetest.lat/mic-test.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devicetest.lat/webcam-test.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devicetest.lat/about.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devicetest.lat/privacy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devicetest.lat/contact.html</loc>
+  </url>
+
+</urlset>
