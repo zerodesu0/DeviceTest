@@ -1,0 +1,9 @@
+ADSENSE SETUP
+1. Replace every example.com URL with your real domain.
+2. Create your Google AdSense account and add your site.
+3. After approval, replace the visible "ADVERTISEMENT" placeholders with the exact AdSense code Google gives you.
+4. Do not modify the AdSense code or encourage users to click ads.
+5. Add your real contact email and adapt the privacy policy to your actual analytics/advertising vendors.
+6. Test the site without ads first.
+
+IMPORTANT: Google requires original, useful content and compliance with publisher policies. A tool alone is not a guarantee of approval.
