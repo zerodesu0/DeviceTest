@@ -1,76 +1,520 @@
 <!doctype html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DeviceTest — Free Online Device Tests</title>
-<meta name="description" content="Free browser-based tests for your mouse, keyboard, microphone, webcam, speakers and gamepad. No downloads required.">
-<link rel="canonical" href="https://example.com/">
+
+<title>DeviceTest — Free Online Mouse, Keyboard & Device Tests</title>
+
+<meta name="description" content="Free online device testers for mouse, keyboard, microphone, webcam and gamepad. Test your hardware instantly in your browser with no downloads.">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://devicetest.lat/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="DeviceTest — Free Online Device Tests">
+<meta property="og:description" content="Test your mouse, keyboard, microphone, webcam and gamepad directly in your browser. No downloads required.">
+<meta property="og:url" content="https://devicetest.lat/">
+<meta property="og:site_name" content="DeviceTest">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DeviceTest — Free Online Device Tests">
+<meta name="twitter:description" content="Free browser-based tests for your mouse, keyboard, microphone, webcam and gamepad.">
+
 <link rel="stylesheet" href="style.css">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "DeviceTest",
+  "url": "https://devicetest.lat/",
+  "description": "Free online browser-based device testing tools."
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "DeviceTest Online Hardware Tests",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Mouse Test",
+      "url": "https://devicetest.lat/mouse-test.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Keyboard Test",
+      "url": "https://devicetest.lat/keyboard-test.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Microphone Test",
+      "url": "https://devicetest.lat/mic-test.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Webcam Test",
+      "url": "https://devicetest.lat/webcam-test.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Gamepad Test",
+      "url": "https://devicetest.lat/gamepad-test.html"
+    }
+  ]
+}
+</script>
+
 </head>
+
 <body>
+
 <header class="site-header">
-  <a class="logo" href="index.html">Device<span>Test</span></a>
-  <nav>
-    <a href="mouse-test.html">Mouse</a><a href="keyboard-test.html">Keyboard</a>
-    <a href="mic-test.html">Microphone</a><a href="webcam-test.html">Webcam</a>
+
+  <a class="logo" href="index.html">
+    Device<span>Test</span>
+  </a>
+
+  <nav aria-label="Main navigation">
+    <a href="mouse-test.html">Mouse</a>
+    <a href="keyboard-test.html">Keyboard</a>
+    <a href="mic-test.html">Microphone</a>
+    <a href="webcam-test.html">Webcam</a>
     <a href="gamepad-test.html">Gamepad</a>
   </nav>
+
 </header>
 
+
 <main>
+
+<!-- HERO -->
+
 <section class="hero">
+
   <div>
-    <p class="eyebrow">FREE • NO DOWNLOADS</p>
-    <h1>Test your devices<br><span>in your browser.</span></h1>
-    <p class="lead">Quick, private browser tests for mice, keyboards, microphones, webcams and gamepads. Your device data stays in your browser.</p>
+
+    <p class="eyebrow">
+      FREE • NO DOWNLOADS
+    </p>
+
+    <h1>
+      Test your devices
+      <br>
+      <span>in your browser.</span>
+    </h1>
+
+    <p class="lead">
+      Free online tests for your mouse, keyboard, microphone,
+      webcam and gamepad. Check your hardware instantly without
+      installing software.
+    </p>
+
     <div class="hero-actions">
-      <a class="button primary" href="mouse-test.html">Test my mouse →</a>
-      <a class="button secondary" href="#tools">Explore tools</a>
+
+      <a class="button primary" href="mouse-test.html">
+        Test my mouse →
+      </a>
+
+      <a class="button secondary" href="#tools">
+        Explore all tests
+      </a>
+
     </div>
+
   </div>
+
+
   <div class="hero-card">
+
     <div class="radar"></div>
-    <div class="status"><span></span> Browser ready</div>
-    <div class="mini-grid"><b>Mouse</b><b>Keyboard</b><b>Audio</b><b>Camera</b></div>
+
+    <div class="status">
+      <span></span>
+      Browser ready
+    </div>
+
+    <div class="mini-grid">
+      <b>Mouse</b>
+      <b>Keyboard</b>
+      <b>Audio</b>
+      <b>Camera</b>
+    </div>
+
   </div>
+
 </section>
 
-<div class="ad-slot">ADVERTISEMENT</div>
+
+<div class="ad-slot">
+ADVERTISEMENT
+</div>
+
+
+<!-- TOOLS -->
 
 <section id="tools" class="section">
-  <div class="section-head"><div><p class="eyebrow">TOOLS</p><h2>Device tests</h2></div><p>Instant tests. No installation.</p></div>
-  <div class="cards">
-    <a class="tool-card" href="mouse-test.html"><div class="icon">🖱️</div><h3>Mouse Test</h3><p>Check left, middle, right and extra buttons, movement and scroll.</p><span>Open test →</span></a>
-    <a class="tool-card" href="keyboard-test.html"><div class="icon">⌨️</div><h3>Keyboard Test</h3><p>Press keys and see exactly which keys your browser detects.</p><span>Open test →</span></a>
-    <a class="tool-card" href="mic-test.html"><div class="icon">🎙️</div><h3>Microphone Test</h3><p>Check microphone access and watch your input level live.</p><span>Open test →</span></a>
-    <a class="tool-card" href="webcam-test.html"><div class="icon">📷</div><h3>Webcam Test</h3><p>Preview your camera and verify that your browser can access it.</p><span>Open test →</span></a>
-    <a class="tool-card" href="gamepad-test.html"><div class="icon">🎮</div><h3>Gamepad Test</h3><p>Connect a controller and inspect buttons, sticks and triggers.</p><span>Open test →</span></a>
+
+  <div class="section-head">
+
+    <div>
+
+      <p class="eyebrow">
+        ONLINE TOOLS
+      </p>
+
+      <h2>
+        Free device tests
+      </h2>
+
+    </div>
+
+    <p>
+      Instant tests. No installation.
+    </p>
+
   </div>
+
+
+  <div class="cards">
+
+
+    <a class="tool-card" href="mouse-test.html">
+
+      <div class="icon">
+        🖱️
+      </div>
+
+      <h3>
+        Mouse Test
+      </h3>
+
+      <p>
+        Test your mouse buttons, movement, clicks and scroll wheel
+        directly in your browser.
+      </p>
+
+      <span>
+        Open Mouse Test →
+      </span>
+
+    </a>
+
+
+    <a class="tool-card" href="keyboard-test.html">
+
+      <div class="icon">
+        ⌨️
+      </div>
+
+      <h3>
+        Keyboard Test
+      </h3>
+
+      <p>
+        Press your keyboard keys and see exactly which inputs
+        your browser detects.
+      </p>
+
+      <span>
+        Open Keyboard Test →
+      </span>
+
+    </a>
+
+
+    <a class="tool-card" href="mic-test.html">
+
+      <div class="icon">
+        🎙️
+      </div>
+
+      <h3>
+        Microphone Test
+      </h3>
+
+      <p>
+        Test your microphone and monitor its input level
+        live without uploading your recording.
+      </p>
+
+      <span>
+        Open Microphone Test →
+      </span>
+
+    </a>
+
+
+    <a class="tool-card" href="webcam-test.html">
+
+      <div class="icon">
+        📷
+      </div>
+
+      <h3>
+        Webcam Test
+      </h3>
+
+      <p>
+        Check your camera and preview your webcam directly
+        in your browser.
+      </p>
+
+      <span>
+        Open Webcam Test →
+      </span>
+
+    </a>
+
+
+    <a class="tool-card" href="gamepad-test.html">
+
+      <div class="icon">
+        🎮
+      </div>
+
+      <h3>
+        Gamepad Test
+      </h3>
+
+      <p>
+        Test controller buttons, D-pad, analog sticks and
+        triggers in real time.
+      </p>
+
+      <span>
+        Open Gamepad Test →
+      </span>
+
+    </a>
+
+
+  </div>
+
 </section>
+
+
+<!-- WHY -->
 
 <section class="info section">
-  <p class="eyebrow">WHY DEVICETEST?</p>
-  <h2>Simple tools for everyday hardware problems.</h2>
+
+  <p class="eyebrow">
+    WHY DEVICETEST?
+  </p>
+
+  <h2>
+    Simple tools for everyday hardware problems.
+  </h2>
+
+
   <div class="three">
-    <article><b>⚡ Instant</b><p>Tests run directly in your browser. There is nothing to install.</p></article>
-    <article><b>🔒 Private</b><p>Device checks are performed locally whenever the browser API allows it.</p></article>
-    <article><b>📱 Cross-device</b><p>Use the tools on desktop, laptop and supported mobile browsers.</p></article>
+
+    <article>
+
+      <b>
+        ⚡ Instant
+      </b>
+
+      <p>
+        Run a device test directly in your browser.
+        There is nothing to download or install.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <b>
+        🔒 Private
+      </b>
+
+      <p>
+        DeviceTest performs supported checks locally in
+        your browser rather than requiring you to upload
+        your device data.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <b>
+        📱 Cross-device
+      </b>
+
+      <p>
+        Use DeviceTest on desktops, laptops and supported
+        mobile browsers.
+      </p>
+
+    </article>
+
   </div>
+
 </section>
+
+
+<!-- EXPLANATION -->
+
+<section class="section">
+
+  <p class="eyebrow">
+    DEVICE DIAGNOSTICS
+  </p>
+
+  <h2>
+    Check your hardware without installing software.
+  </h2>
+
+  <p>
+    Having trouble with a mouse, keyboard, microphone, webcam or
+    controller? DeviceTest provides simple browser-based tests that
+    can help you determine whether your browser is detecting your
+    device correctly.
+  </p>
+
+  <p>
+    Choose a test above and interact with your hardware. Depending
+    on the device and browser, you can check button presses, keyboard
+    input, microphone levels, camera access, controller buttons,
+    analog sticks and other supported inputs.
+  </p>
+
+</section>
+
+
+<!-- FAQ -->
 
 <section class="faq section">
-  <h2>Frequently asked questions</h2>
-  <details><summary>Does DeviceTest download anything?</summary><p>No. The tools are designed to run in the browser. Camera and microphone tests require your browser's permission.</p></details>
-  <details><summary>Can a browser test prove that my hardware is perfect?</summary><p>No. Browser APIs can confirm what the browser detects, but they cannot diagnose every hardware or driver problem.</p></details>
-  <details><summary>Why does my microphone or camera need permission?</summary><p>Modern browsers protect camera and microphone access. You must explicitly allow access before a web page can use them.</p></details>
+
+  <h2>
+    Frequently asked questions
+  </h2>
+
+
+  <details>
+
+    <summary>
+      Is DeviceTest free?
+    </summary>
+
+    <p>
+      Yes. DeviceTest's browser-based device tests are free to use
+      and do not require a download.
+    </p>
+
+  </details>
+
+
+  <details>
+
+    <summary>
+      Does DeviceTest download anything?
+    </summary>
+
+    <p>
+      No. The tests are designed to run directly in your browser.
+      Camera and microphone tests require permission from your browser.
+    </p>
+
+  </details>
+
+
+  <details>
+
+    <summary>
+      Can a browser test prove that my hardware is completely working?
+    </summary>
+
+    <p>
+      No. Browser tests can show whether supported device inputs are
+      being detected, but they cannot diagnose every hardware,
+      driver or operating-system problem.
+    </p>
+
+  </details>
+
+
+  <details>
+
+    <summary>
+      Why does my microphone or webcam need permission?
+    </summary>
+
+    <p>
+      Modern browsers protect camera and microphone access.
+      You must explicitly allow a website to use these devices.
+    </p>
+
+  </details>
+
+
+  <details>
+
+    <summary>
+      What devices can I test?
+    </summary>
+
+    <p>
+      DeviceTest currently provides online tests for mice,
+      keyboards, microphones, webcams and gamepads/controllers.
+    </p>
+
+  </details>
+
+
 </section>
+
 </main>
 
+
 <footer>
-  <div class="footer-inner"><a class="logo" href="index.html">Device<span>Test</span></a><div><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></div></div>
-  <p>© 2026 DeviceTest. Built for quick browser-based hardware checks.</p>
+
+  <div class="footer-inner">
+
+    <a class="logo" href="index.html">
+      Device<span>Test</span>
+    </a>
+
+    <div>
+
+      <a href="about.html">
+        About
+      </a>
+
+      <a href="privacy.html">
+        Privacy
+      </a>
+
+      <a href="contact.html">
+        Contact
+      </a>
+
+    </div>
+
+  </div>
+
+  <p>
+    © 2026 DeviceTest. Built for quick browser-based hardware checks.
+  </p>
+
 </footer>
+
+
 <script src="script.js"></script>
+
 </body>
 </html>
