@@ -1,1 +1,487 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mouse Test | DeviceTest</title><meta name="description" content="Test mouse buttons, movement and scroll-wheel input directly in your browser."><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="tool.css"></head><body><header class="site-header"><a class="logo" href="index.html">Device<span>Test</span></a><nav><a href="mouse-test.html">Mouse</a><a href="keyboard-test.html">Keyboard</a><a href="mic-test.html">Microphone</a><a href="webcam-test.html">Webcam</a><a href="gamepad-test.html">Gamepad</a></nav></header><main class="tool-page"><p class="eyebrow">DEVICE TEST</p><h1>Mouse Test</h1><p class="subtitle">Test mouse buttons, movement and scroll-wheel input directly in your browser.</p><div class="ad-slot">ADVERTISEMENT</div><section class="tester"><div class="toolbar"><span class="pill">Click every button</span><span class="pill">Move your mouse</span><span class="pill">Scroll</span></div><div id="mouseArea" class="test-area"><div class="test-message">Click, move or scroll anywhere inside this area</div></div><div class="stats"><div class="stat"><small>Left clicks</small><b id="left">0</b></div><div class="stat"><small>Middle clicks</small><b id="middle">0</b></div><div class="stat"><small>Right clicks</small><b id="right">0</b></div><div class="stat"><small>Wheel events</small><b id="wheel">0</b></div></div><p class="hint" id="mouseHint">Waiting for mouse input…</p></section><p class="copy">This browser test is a quick diagnostic aid, not a complete hardware diagnostic. Results depend on your browser, operating system and device permissions. DeviceTest does not need to upload your device data to perform these basic checks.</p></main><footer><div class="footer-inner"><a class="logo" href="index.html">Device<span>Test</span></a><div><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a></div></div><p>© 2026 DeviceTest.</p></footer><script>const a=document.getElementById("mouseArea"),c={0:0,1:0,2:0};a.addEventListener("mousedown",e=>{c[e.button]=(c[e.button]||0)+1;document.getElementById(["left","middle","right"][e.button]||"left").textContent=c[e.button];document.getElementById("mouseHint").textContent="Detected button: "+e.button+" ("+e.buttons+" held)"});a.addEventListener("contextmenu",e=>e.preventDefault());a.addEventListener("wheel",e=>{document.getElementById("wheel").textContent=+document.getElementById("wheel").textContent+1});a.addEventListener("mousemove",()=>document.getElementById("mouseHint").textContent="Mouse movement detected ✓");</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Mouse Test — Button, Click & Scroll Tester | DeviceTest</title>
+
+<meta name="description" content="Free online mouse test. Test your left, right, middle and extra mouse buttons, movement, scroll wheel and double clicks directly in your browser.">
+
+<link rel="canonical" href="https://devicetest.lat/mouse-test.html">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <a class="logo" href="index.html">Device<span>Test</span></a>
+
+  <nav>
+    <a href="mouse-test.html">Mouse</a>
+    <a href="keyboard-test.html">Keyboard</a>
+    <a href="mic-test.html">Microphone</a>
+    <a href="webcam-test.html">Webcam</a>
+    <a href="gamepad-test.html">Gamepad</a>
+  </nav>
+</header>
+
+<main class="tool-page">
+
+<p class="eyebrow">FREE ONLINE TOOL</p>
+
+<h1>Mouse Test</h1>
+
+<p class="subtitle">
+Test your mouse buttons, clicks, movement, scroll wheel and extra buttons directly in your browser.
+No downloads or installation required.
+</p>
+
+<div class="ad-slot">ADVERTISEMENT</div>
+
+<section class="tester">
+
+<div class="toolbar">
+  <span class="pill">🖱️ Click buttons</span>
+  <span class="pill">↔ Move mouse</span>
+  <span class="pill">↕ Scroll</span>
+  <span class="pill">🔘 Test extra buttons</span>
+</div>
+
+<div id="mouseArea" class="test-area">
+
+  <div class="test-message" id="testMessage">
+    Move, click or scroll your mouse inside this area
+  </div>
+
+  <div id="clickIndicator" style="
+    position:absolute;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 18px var(--accent);
+    pointer-events:none;
+    display:none;
+    transform:translate(-50%,-50%);
+  "></div>
+
+</div>
+
+<div class="stats">
+
+  <div class="stat">
+    <small>Left clicks</small>
+    <b id="left">0</b>
+  </div>
+
+  <div class="stat">
+    <small>Middle clicks</small>
+    <b id="middle">0</b>
+  </div>
+
+  <div class="stat">
+    <small>Right clicks</small>
+    <b id="right">0</b>
+  </div>
+
+  <div class="stat">
+    <small>Extra buttons</small>
+    <b id="extra">0</b>
+  </div>
+
+</div>
+
+<div class="stats">
+
+  <div class="stat">
+    <small>Wheel events</small>
+    <b id="wheel">0</b>
+  </div>
+
+  <div class="stat">
+    <small>Distance moved</small>
+    <b id="movement">0 px</b>
+  </div>
+
+  <div class="stat">
+    <small>Double clicks</small>
+    <b id="double">0</b>
+  </div>
+
+  <div class="stat">
+    <small>Buttons held</small>
+    <b id="held">None</b>
+  </div>
+
+</div>
+
+<p class="hint" id="mouseHint">
+Waiting for mouse input…
+</p>
+
+<button id="resetButton" class="button secondary" type="button">
+Reset test
+</button>
+
+</section>
+
+
+<section class="section">
+
+<h2>How to test your mouse</h2>
+
+<p>
+Click the different mouse buttons inside the testing area above. The tool detects
+left, middle, right and supported extra mouse buttons. You can also move your mouse,
+scroll the wheel and test double-click detection.
+</p>
+
+<h2>What can this mouse tester detect?</h2>
+
+<p>
+DeviceTest can detect mouse button presses and releases, mouse movement, scrolling
+and supported extra buttons through your browser. It can help identify buttons that
+your computer is not detecting correctly.
+</p>
+
+<h2>Why isn't my mouse button working?</h2>
+
+<p>
+If a mouse button does not register in the test, check whether the problem occurs
+only in this browser or across your computer. Try another USB port, reconnect your
+mouse, check your operating-system settings and test the mouse on another computer
+if possible.
+</p>
+
+</section>
+
+
+<p class="copy">
+This online mouse test is a browser-based diagnostic tool. It does not install
+software or upload your mouse data. Results can vary depending on your browser,
+operating system and mouse hardware.
+</p>
+
+</main>
+
+
+<footer>
+
+<div class="footer-inner">
+
+<a class="logo" href="index.html">
+Device<span>Test</span>
+</a>
+
+<div>
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy</a>
+<a href="contact.html">Contact</a>
+</div>
+
+</div>
+
+<p>© 2026 DeviceTest.</p>
+
+</footer>
+
+
+<script>
+
+const area = document.getElementById("mouseArea");
+
+const left = document.getElementById("left");
+const middle = document.getElementById("middle");
+const right = document.getElementById("right");
+const extra = document.getElementById("extra");
+
+const wheel = document.getElementById("wheel");
+const movement = document.getElementById("movement");
+const doubleClicks = document.getElementById("double");
+
+const heldDisplay = document.getElementById("held");
+const hint = document.getElementById("mouseHint");
+const message = document.getElementById("testMessage");
+
+const indicator = document.getElementById("clickIndicator");
+const resetButton = document.getElementById("resetButton");
+
+
+let counts = {
+  left: 0,
+  middle: 0,
+  right: 0,
+  extra: 0,
+  wheel: 0,
+  double: 0
+};
+
+
+let totalMovement = 0;
+
+let lastX = null;
+let lastY = null;
+
+let lastClickTime = 0;
+
+let heldButtons = new Set();
+
+
+function updateHeld(){
+
+  if(heldButtons.size === 0){
+
+    heldDisplay.textContent = "None";
+
+    return;
+
+  }
+
+  const names = {
+
+    0: "Left",
+    1: "Middle",
+    2: "Right",
+    3: "Back",
+    4: "Forward"
+
+  };
+
+  heldDisplay.textContent =
+    [...heldButtons]
+    .map(button => names[button] || "Button " + button)
+    .join(" + ");
+
+}
+
+
+area.addEventListener("mousedown", function(e){
+
+  e.preventDefault();
+
+  heldButtons.add(e.button);
+
+  updateHeld();
+
+
+  if(e.button === 0){
+
+    counts.left++;
+
+    left.textContent = counts.left;
+
+  }
+
+  else if(e.button === 1){
+
+    counts.middle++;
+
+    middle.textContent = counts.middle;
+
+  }
+
+  else if(e.button === 2){
+
+    counts.right++;
+
+    right.textContent = counts.right;
+
+  }
+
+  else{
+
+    counts.extra++;
+
+    extra.textContent = counts.extra;
+
+  }
+
+
+  const now = Date.now();
+
+
+  if(now - lastClickTime < 400){
+
+    counts.double++;
+
+    doubleClicks.textContent = counts.double;
+
+    hint.textContent = "Double click detected ✓";
+
+  }
+
+  else{
+
+    const names = {
+
+      0: "Left button",
+
+      1: "Middle button",
+
+      2: "Right button",
+
+      3: "Back button",
+
+      4: "Forward button"
+
+    };
+
+    hint.textContent =
+      "Detected: " + (names[e.button] || "Button " + e.button) + " ✓";
+
+  }
+
+
+  lastClickTime = now;
+
+
+  indicator.style.left = e.offsetX + "px";
+
+  indicator.style.top = e.offsetY + "px";
+
+  indicator.style.display = "block";
+
+});
+
+
+area.addEventListener("mouseup", function(e){
+
+  heldButtons.delete(e.button);
+
+  updateHeld();
+
+});
+
+
+area.addEventListener("mouseleave", function(){
+
+  heldButtons.clear();
+
+  updateHeld();
+
+});
+
+
+area.addEventListener("contextmenu", function(e){
+
+  e.preventDefault();
+
+});
+
+
+area.addEventListener("mousemove", function(e){
+
+  if(lastX !== null && lastY !== null){
+
+    const dx = e.clientX - lastX;
+
+    const dy = e.clientY - lastY;
+
+    totalMovement += Math.sqrt(
+      (dx * dx) + (dy * dy)
+    );
+
+  }
+
+
+  lastX = e.clientX;
+  lastY = e.clientY;
+
+
+  movement.textContent =
+    Math.round(totalMovement) + " px";
+
+
+  message.textContent =
+    "Mouse detected — X: " +
+    e.offsetX +
+    " | Y: " +
+    e.offsetY;
+
+
+  hint.textContent =
+    "Mouse movement detected ✓";
+
+});
+
+
+area.addEventListener("wheel", function(e){
+
+  e.preventDefault();
+
+  counts.wheel++;
+
+  wheel.textContent = counts.wheel;
+
+
+  if(e.deltaY < 0){
+
+    hint.textContent = "Scroll up detected ↑";
+
+  }
+
+  else{
+
+    hint.textContent = "Scroll down detected ↓";
+
+  }
+
+}, { passive:false });
+
+
+resetButton.addEventListener("click", function(){
+
+  counts = {
+    left: 0,
+    middle: 0,
+    right: 0,
+    extra: 0,
+    wheel: 0,
+    double: 0
+  };
+
+
+  totalMovement = 0;
+
+  lastX = null;
+  lastY = null;
+
+  lastClickTime = 0;
+
+  heldButtons.clear();
+
+
+  left.textContent = "0";
+  middle.textContent = "0";
+  right.textContent = "0";
+  extra.textContent = "0";
+
+  wheel.textContent = "0";
+
+  movement.textContent = "0 px";
+
+  doubleClicks.textContent = "0";
+
+  heldDisplay.textContent = "None";
+
+
+  message.textContent =
+    "Move, click or scroll your mouse inside this area";
+
+
+  hint.textContent =
+    "Test reset. Waiting for mouse input…";
+
+
+  indicator.style.display = "none";
+
+});
+
+
+</script>
+
+</body>
+</html>
