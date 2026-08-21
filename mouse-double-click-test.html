@@ -1,0 +1,779 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link rel="icon" type="image/jpeg" href="logo.jpeg">
+
+<title>Mouse Double Click Test — Free Online Double Click Tester | DeviceTest</title>
+
+<meta name="description" content="Test your mouse for double clicking online. Check single clicks, double clicks and click speed with this free browser-based mouse double click test.">
+
+<link rel="canonical" href="https://devicetest.lat/mouse-double-click-test.html">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tool.css">
+
+<style>
+
+.double-test-area{
+  min-height:360px;
+  cursor:pointer;
+  user-select:none;
+}
+
+.double-test-content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.click-circle{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:var(--panel2);
+  border:2px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  font-weight:700;
+  transition:.12s ease;
+}
+
+.click-circle.active{
+  background:var(--accent);
+  border-color:var(--accent);
+  box-shadow:0 0 30px var(--accent);
+  transform:scale(.94);
+}
+
+.click-circle.double{
+  box-shadow:0 0 35px var(--accent);
+  transform:scale(1.05);
+}
+
+.click-status{
+  font-size:18px;
+  font-weight:700;
+  min-height:25px;
+}
+
+.click-subtitle{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.double-result{
+  margin-top:18px;
+  padding:22px;
+  background:var(--panel2);
+  border:1px solid var(--border);
+  border-radius:14px;
+  text-align:center;
+}
+
+.double-result small{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:6px;
+}
+
+.double-result strong{
+  display:block;
+  font-size:34px;
+}
+
+.double-result span{
+  display:block;
+  margin-top:7px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.double-buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+.click-history{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.history-item{
+  background:var(--panel2);
+  border-radius:10px;
+  padding:13px;
+  text-align:center;
+}
+
+.history-item small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:4px;
+}
+
+.history-item b{
+  font-size:18px;
+}
+
+@media(max-width:700px){
+
+  .double-test-area{
+    min-height:300px;
+  }
+
+  .click-circle{
+    width:90px;
+    height:90px;
+  }
+
+  .click-history{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<a class="logo" href="index.html">
+Device<span>Test</span>
+</a>
+
+<nav>
+<a href="mouse-test.html">Mouse</a>
+<a href="keyboard-test.html">Keyboard</a>
+<a href="mic-test.html">Microphone</a>
+<a href="webcam-test.html">Webcam</a>
+<a href="gamepad-test.html">Gamepad</a>
+</nav>
+
+</header>
+
+
+<main class="tool-page">
+
+<p class="eyebrow">FREE ONLINE TOOL</p>
+
+<h1>Mouse Double Click Test</h1>
+
+<p class="subtitle">
+Test your mouse for double clicking problems. Check whether your mouse
+registers single and double clicks correctly directly in your browser.
+</p>
+
+<div class="ad-slot">ADVERTISEMENT</div>
+
+
+<section class="tester">
+
+<div class="toolbar">
+
+<span class="pill">🖱️ Click to test</span>
+
+<span class="pill">⚡ Double-click detection</span>
+
+<span class="pill">📊 Click timing</span>
+
+</div>
+
+
+<div
+id="testArea"
+class="test-area double-test-area"
+>
+
+<div class="double-test-content">
+
+<div
+id="clickCircle"
+class="click-circle"
+>
+CLICK
+</div>
+
+<div
+id="clickStatus"
+class="click-status"
+>
+Ready
+</div>
+
+<div class="click-subtitle">
+Click the area twice quickly to test your mouse
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<small>Total clicks</small>
+
+<b id="totalClicks">0</b>
+
+</div>
+
+
+<div class="stat">
+
+<small>Double clicks</small>
+
+<b id="doubleClicks">0</b>
+
+</div>
+
+
+<div class="stat">
+
+<small>Last interval</small>
+
+<b id="lastInterval">—</b>
+
+</div>
+
+
+<div class="stat">
+
+<small>Fastest double click</small>
+
+<b id="fastest">—</b>
+
+</div>
+
+</div>
+
+
+<div class="double-result">
+
+<small>Test result</small>
+
+<strong id="result">
+Ready
+</strong>
+
+<span id="resultText">
+Click twice quickly to check whether your mouse registers a double click.
+</span>
+
+</div>
+
+
+<div class="click-history">
+
+<div class="history-item">
+
+<small>Single clicks</small>
+
+<b id="singleClicks">0</b>
+
+</div>
+
+<div class="history-item">
+
+<small>Double-click rate</small>
+
+<b id="doubleRate">0%</b>
+
+</div>
+
+<div class="history-item">
+
+<small>Last click</small>
+
+<b id="lastClick">—</b>
+
+</div>
+
+</div>
+
+
+<p class="hint" id="hint">
+Click the test area to begin.
+</p>
+
+
+<div class="double-buttons">
+
+<button
+id="resetButton"
+class="button secondary"
+type="button"
+>
+Reset Test
+</button>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>How to use the Mouse Double Click Test</h2>
+
+<p>
+Click the test area twice quickly. DeviceTest measures the time between
+your clicks and detects whether they form a double click. You can repeat
+the test as many times as you want.
+</p>
+
+
+<h2>How do I know if my mouse is double clicking?</h2>
+
+<p>
+A mouse may have a double-click problem if you click once but your computer
+registers two clicks. This can cause files to open unexpectedly, text to be
+selected incorrectly or buttons to activate twice.
+</p>
+
+
+<h2>What causes mouse double clicking?</h2>
+
+<p>
+Double clicking can be caused by a worn or faulty mouse switch, electrical
+contact problems, dust or debris, or other hardware issues. Software and
+operating-system settings can also affect click behavior.
+</p>
+
+
+<h2>Can this test detect a faulty mouse switch?</h2>
+
+<p>
+This test can show how your browser is receiving mouse clicks, but it cannot
+directly inspect the physical switch inside your mouse. If your mouse
+repeatedly registers two clicks when you intentionally click once, the
+hardware may need further testing or replacement.
+</p>
+
+
+<h2>What is a normal double-click speed?</h2>
+
+<p>
+There is no single speed that is correct for every mouse. This test uses
+the time between two clicks to identify quick consecutive clicks, while
+your operating system and browser may use their own double-click timing
+settings.
+</p>
+
+
+<h2>Mouse Double Click Test FAQ</h2>
+
+<details>
+
+<summary>Why does my mouse double click when I only click once?</summary>
+
+<p>
+A worn mouse switch is a common cause, although software settings or other
+input problems can also produce unexpected clicks. Try testing the mouse
+with another computer or browser to help determine whether the problem is
+specific to your current setup.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>How can I test my mouse double click speed?</summary>
+
+<p>
+Click the test area twice as quickly as you normally would. DeviceTest
+measures the time between the two clicks and displays the interval in
+milliseconds.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>Can I test a gaming mouse for double clicking?</summary>
+
+<p>
+Yes. The test works with standard mice and gaming mice as long as your
+browser receives their button input.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>Does this mouse test require a download?</summary>
+
+<p>
+No. The test runs directly in your web browser and does not require
+additional software.
+</p>
+
+</details>
+
+</section>
+
+
+<p class="copy">
+
+DeviceTest's Mouse Double Click Test is a browser-based diagnostic tool.
+It checks the mouse click events received by your browser and cannot
+directly inspect the physical mouse switch. Results may vary depending
+on your browser, operating system and mouse hardware.
+
+</p>
+
+</main>
+
+
+<footer>
+
+<div class="footer-inner">
+
+<a class="logo" href="index.html">
+Device<span>Test</span>
+</a>
+
+<div>
+
+<a href="index.html">Home</a>
+
+<a href="mouse-test.html">Mouse Test</a>
+
+<a href="keyboard-test.html">Keyboard Test</a>
+
+<a href="gamepad-test.html">Gamepad Test</a>
+
+<a href="about.html">About</a>
+
+<a href="privacy.html">Privacy</a>
+
+<a href="contact.html">Contact</a>
+
+</div>
+
+</div>
+
+<p>© 2026 DeviceTest.</p>
+
+</footer>
+
+
+<script>
+
+const testArea =
+document.getElementById("testArea");
+
+const clickCircle =
+document.getElementById("clickCircle");
+
+const clickStatus =
+document.getElementById("clickStatus");
+
+const totalClicksDisplay =
+document.getElementById("totalClicks");
+
+const doubleClicksDisplay =
+document.getElementById("doubleClicks");
+
+const lastIntervalDisplay =
+document.getElementById("lastInterval");
+
+const fastestDisplay =
+document.getElementById("fastest");
+
+const singleClicksDisplay =
+document.getElementById("singleClicks");
+
+const doubleRateDisplay =
+document.getElementById("doubleRate");
+
+const lastClickDisplay =
+document.getElementById("lastClick");
+
+const resultDisplay =
+document.getElementById("result");
+
+const resultText =
+document.getElementById("resultText");
+
+const hint =
+document.getElementById("hint");
+
+const resetButton =
+document.getElementById("resetButton");
+
+
+let totalClicks = 0;
+
+let doubleClicks = 0;
+
+let lastClickTime = 0;
+
+let fastestDouble = null;
+
+let singleClicks = 0;
+
+
+/*
+  500ms is a practical threshold for detecting
+  rapid consecutive clicks in this browser test.
+*/
+
+const DOUBLE_CLICK_THRESHOLD = 500;
+
+
+testArea.addEventListener("mousedown", function(e){
+
+  /*
+    Only test the primary mouse button.
+    Right and middle clicks are handled by the
+    dedicated mouse tester.
+  */
+
+  if(e.button !== 0){
+    return;
+  }
+
+
+  e.preventDefault();
+
+
+  const now = performance.now();
+
+
+  totalClicks++;
+
+
+  totalClicksDisplay.textContent =
+    totalClicks;
+
+
+  clickCircle.classList.add("active");
+
+
+  setTimeout(function(){
+
+    clickCircle.classList.remove("active");
+
+  },100);
+
+
+  if(lastClickTime !== 0){
+
+    const interval =
+      now - lastClickTime;
+
+
+    lastIntervalDisplay.textContent =
+      Math.round(interval) + " ms";
+
+
+    lastClickDisplay.textContent =
+      Math.round(interval) + " ms";
+
+
+    if(interval <= DOUBLE_CLICK_THRESHOLD){
+
+      doubleClicks++;
+
+
+      doubleClicksDisplay.textContent =
+        doubleClicks;
+
+
+      if(
+        fastestDouble === null ||
+        interval < fastestDouble
+      ){
+
+        fastestDouble = interval;
+
+        fastestDisplay.textContent =
+          Math.round(interval) + " ms";
+
+      }
+
+
+      clickCircle.classList.add("double");
+
+
+      setTimeout(function(){
+
+        clickCircle.classList.remove("double");
+
+      },180);
+
+
+      clickStatus.textContent =
+        "Double click detected ✓";
+
+
+      resultDisplay.textContent =
+        "Double click detected ✓";
+
+
+      resultText.textContent =
+        "Your mouse registered two clicks " +
+        Math.round(interval) +
+        " ms apart.";
+
+
+      hint.textContent =
+        "Double click detected successfully ✓";
+
+    }
+
+    else{
+
+      singleClicks++;
+
+
+      clickStatus.textContent =
+        "Single click";
+
+
+      resultDisplay.textContent =
+        "Single click";
+
+
+      resultText.textContent =
+        "The two clicks were " +
+        Math.round(interval) +
+        " ms apart.";
+
+
+      hint.textContent =
+        "Click again quickly to test a double click.";
+
+    }
+
+  }
+
+  else{
+
+    singleClicks++;
+
+
+    clickStatus.textContent =
+      "Click detected";
+
+
+    resultDisplay.textContent =
+      "Click detected";
+
+
+    resultText.textContent =
+      "Click again quickly to test a double click.";
+
+
+    hint.textContent =
+      "First click detected. Click again quickly.";
+
+  }
+
+
+  singleClicksDisplay.textContent =
+    singleClicks;
+
+
+  const rate =
+    totalClicks > 0
+      ? Math.round((doubleClicks / totalClicks) * 100)
+      : 0;
+
+
+  doubleRateDisplay.textContent =
+    rate + "%";
+
+
+  lastClickTime = now;
+
+});
+
+
+testArea.addEventListener("contextmenu", function(e){
+
+  e.preventDefault();
+
+});
+
+
+resetButton.addEventListener("click", function(){
+
+  totalClicks = 0;
+
+  doubleClicks = 0;
+
+  singleClicks = 0;
+
+  lastClickTime = 0;
+
+  fastestDouble = null;
+
+
+  totalClicksDisplay.textContent =
+    "0";
+
+  doubleClicksDisplay.textContent =
+    "0";
+
+  singleClicksDisplay.textContent =
+    "0";
+
+  lastIntervalDisplay.textContent =
+    "—";
+
+  fastestDisplay.textContent =
+    "—";
+
+  doubleRateDisplay.textContent =
+    "0%";
+
+  lastClickDisplay.textContent =
+    "—";
+
+
+  clickStatus.textContent =
+    "Ready";
+
+
+  resultDisplay.textContent =
+    "Ready";
+
+
+  resultText.textContent =
+    "Click twice quickly to check whether your mouse registers a double click.";
+
+
+  hint.textContent =
+    "Click the test area to begin.";
+
+});
+
+
+</script>
+
+</body>
+</html>
+```
